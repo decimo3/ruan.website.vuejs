@@ -5,16 +5,16 @@
     </div>
     <nav class="linha">
       <li class="coluna-3">
-        <a href="index.html">Inicio</a>
+        <a>Inicio</a>
       </li>
       <li class="coluna-3">
-        <a href="sobremim.html">Sobre mim</a>
+        <a>Sobre mim</a>
       </li>
       <li class="coluna-3">
-        <a href="curriculo.html">Profissional</a>
+        <a>Profissional</a>
       </li>
       <li class="coluna-3">
-        <a href="selecionar.html">Aplicativos</a>
+        <a>Aplicativos</a>
       </li>
     </nav>
   </div>
@@ -24,7 +24,7 @@ export default {};
 </script>
 <style scoped>
 #cabeca {
-  color: rgb(255, 255, 255);
+  color: #ffffff;
   text-align: center;
 }
 nav {

@@ -1,21 +1,21 @@
 <template>
   <div id="app">
     <cabeca />
-    <!--  <conteudo />
-    <rodape />-->
+    <!--  <conteudo /> -->
+    <rodape />
   </div>
 </template>
 
 <script>
 import cabeca from "./components/cabeca.vue";
 // import conteudo from "./components/conteudo.vue";
-// import rodape from "./components/rodape.vue";
+import rodape from "./components/rodape.vue";
 export default {
   name: "App",
   components: {
     cabeca,
     // conteudo,
-    // rodape,
+    rodape,
   },
 };
 </script>
@@ -80,13 +80,6 @@ export default {
     width: 100%;
   }
 }
-/*
-header {
-  background-image: url("../imagens/tattoo.png");
-  background-repeat: no-repeat;
-  background-position: center bottom;
-}
-*/
 .shadow {
   text-shadow: 0px 2px #000000, 0px -2px #000000, 2px 0px #000000,
     -2px 0px #000000;
@@ -105,24 +98,6 @@ header {
   background-color: #8d8d8d;
 }
 
-footer {
-  background-color: #8d8d8d;
-  color: #ffffff;
-  padding: 15px;
-  border: 1px solid #000000;
-}
-footer li a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 15px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-}
-footer li a:visited {
-  color: #ffffff;
-}
-footer li img {
-  float: right;
-}
 /*
 .barraTitulo label {
     width: 30%;
