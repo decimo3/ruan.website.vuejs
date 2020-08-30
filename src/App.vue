@@ -1,20 +1,20 @@
 <template>
   <div id="app">
     <cabeca />
-    <!--  <conteudo /> -->
+    <conteudo />
     <rodape />
   </div>
 </template>
 
 <script>
 import cabeca from "./components/cabeca.vue";
-// import conteudo from "./components/conteudo.vue";
+import conteudo from "./components/conteudo.vue";
 import rodape from "./components/rodape.vue";
 export default {
   name: "App",
   components: {
     cabeca,
-    // conteudo,
+    conteudo,
     rodape,
   },
 };
@@ -84,20 +84,6 @@ export default {
   text-shadow: 0px 2px #000000, 0px -2px #000000, 2px 0px #000000,
     -2px 0px #000000;
 }
-
-#mestre {
-  padding: 15px;
-  justify-content: center;
-  align-items: center;
-  background-color: #616161;
-}
-
-#quadro {
-  padding: 15px;
-  text-align: center;
-  background-color: #8d8d8d;
-}
-
 /*
 .barraTitulo label {
     width: 30%;

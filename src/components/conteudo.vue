@@ -1,10 +1,10 @@
 <template>
-  <div class="mestre" id="mestre">
-    <div id="esquerda" class="adsense" name="adsense-esquerda"></div>
-    <div id="quadro" class="quadro">
+  <div class="linha" id="mestre">
+    <div id="esquerda" class="coluna-2" name="adsense-esquerda"></div>
+    <div id="quadro" class="coluna-8">
       <logarUsuario />
     </div>
-    <div id="direita" class="adsense" name="adsense-direira"></div>
+    <div id="direita" class="coluna-2" name="adsense-direira"></div>
   </div>
 </template>
 <script>
@@ -16,16 +16,16 @@ export default {
 };
 </script>
 <style scoped>
-.mestre {
-  width: 100%;
-  height: 400px;
-  background-color: lightgray;
+#mestre {
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  background-color: #616161;
 }
-.quadro {
-  width: 40%;
-  background-color: white;
-}
-.adsense {
-  width: 30%;
+
+#quadro {
+  padding: 15px;
+  text-align: center;
+  background-color: #8d8d8d;
 }
 </style>
