@@ -2,16 +2,16 @@
   <div class="linha" id="mestre">
     <div id="esquerda" class="coluna-2" name="adsense-esquerda"></div>
     <div id="quadro" class="coluna-8">
-      <logarUsuario />
+      <listarPostagens />
     </div>
     <div id="direita" class="coluna-2" name="adsense-direira"></div>
   </div>
 </template>
 <script>
-import logarUsuario from "./user.handler/login.user.vue";
+import listarPostagens from "./post.handler/list.post.vue";
 export default {
   components: {
-    logarUsuario,
+    listarPostagens,
   },
 };
 </script>
