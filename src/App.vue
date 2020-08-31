@@ -83,6 +83,7 @@ export default {
 .shadow {
   text-shadow: 0px 2px #000000, 0px -2px #000000, 2px 0px #000000,
     -2px 0px #000000;
+    color: #ffffff;
 }
 /*
 .barraTitulo label {
@@ -105,16 +106,5 @@ export default {
     border: 1px solid #000000;
     padding: 15px;
 }
-#form label {
-    text-align: right;
-}
-#form input {
-    text-align: left;
-}
-.cadastro {
-	margin: auto;
-  border: 1px solid #000000;
-	border-radius: 15px;
-	background-color: #dcdcdc;
-}*/
+*/
 </style>

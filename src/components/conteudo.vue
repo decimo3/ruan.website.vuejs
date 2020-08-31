@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import logarUsuario from "./logarUsuario.vue";
+import logarUsuario from "./user.handler/login.user.vue";
 export default {
   components: {
     logarUsuario,
