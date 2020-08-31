@@ -1,7 +1,7 @@
 <template>
-  <div id="quadro" class="cadastro">
+  <div id="quadro" class="linha cadastro">
     <h2 class="shadow">Formulário de cadastro</h2>
-    <form id="cadastro">
+    <form id="coluna-12 cadastro">
       <label for="nome">Nome Completo:</label>
       <input type="text" id="nome" name="nome" required />
       <label for="username">Login:</label>
@@ -23,8 +23,6 @@ export default {};
 </script>
 <style scoped>
 .cadastro {
-  margin-left: 25%;
-  margin-right: 25%;
   border: 2px solid #000000;
   border-radius: 15px;
   background-color: #dcdcdc;
@@ -40,6 +38,10 @@ export default {};
 }
 
 @media only screen and (orientation: landscape) {
+  .cadastro {
+  margin-left: 25%;
+  margin-right: 25%;
+  }
   form {
     padding: 15px;
     display: grid;

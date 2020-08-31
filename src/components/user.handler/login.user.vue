@@ -1,5 +1,5 @@
 <template>
-  <form class="cadastro">
+  <form class="linha cadastro">
     <h2 class="shadow">Entre com a sua conta</h2>
     <label for="email">E-mail:</label>
     <input type="email" id="email" name="email" placeholder="Seu e-mail aqui!" required />

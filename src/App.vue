@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <cabecalho msg="Minha vida em uma página"/>
     <cabeca />
     <conteudo />
     <rodape />
@@ -7,16 +8,21 @@
 </template>
 
 <script>
+import cabecalho from "./components/user.handler/user.head.vue"
 import cabeca from "./components/cabeca.vue";
 import conteudo from "./components/conteudo.vue";
 import rodape from "./components/rodape.vue";
 export default {
   name: "App",
   components: {
+    cabecalho,
     cabeca,
     conteudo,
     rodape,
   },
+  data() {
+
+  }
 };
 </script>
 

@@ -24,7 +24,6 @@ export default {
 }
 
 #quadro {
-  padding: 15px;
   text-align: center;
   background-color: #8d8d8d;
 }
