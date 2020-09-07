@@ -2,16 +2,21 @@
   <div class="linha" id="mestre">
     <div id="esquerda" class="coluna-2" name="adsense-esquerda"></div>
     <div id="quadro" class="coluna-8">
-      <listarPostagens />
+      <publicacoes/>
     </div>
     <div id="direita" class="coluna-2" name="adsense-direira"></div>
   </div>
 </template>
 <script>
-import listarPostagens from "./post.handler/list.post.vue";
+import publicacoes from "./publicacoes.vue";
 export default {
+  data() {
+    return {
+      aba: Number
+    }
+  },
   components: {
-    listarPostagens,
+    publicacoes,
   },
 };
 </script>

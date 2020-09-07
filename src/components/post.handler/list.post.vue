@@ -1,48 +1,17 @@
 <template>
-  <div></div>
+  <div name="barraTitulo" class="barraTitulo">
+    Título: {{depoimento.titulo}} em {{depoimento.timestamps.createdAt}}
+    <div name="corpoDepoimento" class="corpoDepoimento">
+      {{depoimento.depoimento}}
+    </div>
+    por {{depoimento.nome}}
+  </div>
 </template>
 <script>
 export default {
-  methods: {
-    imprimeResultado: (log) => {
-      for (let index = log.length - 1; index >= 0; index--) {
-        let quadro = window.document.getElementById("quadro");
-        let titulo = window.document.createElement("div");
-        titulo.setAttribute("name", "barraTitulo");
-        titulo.setAttribute("class", "barraTitulo");
-        titulo.innerText = `Titulo: ${log[index].titulo} por ${log[index].nome}`;
-        quadro.appendChild(titulo);
-        let depoimento = window.document.createElement("div");
-        depoimento.setAttribute("name", "corpoDepoimento");
-        depoimento.setAttribute("class", "corpoDepoimento");
-        depoimento.innerText = `${log[index].depoimento}`;
-        titulo.appendChild(depoimento);
-      }
-    },
-    errorHandler: (message, err) => {
-      console.error(message, err);
-      let quadro = window.document.getElementById("quadro");
-      quadro.innerHTML = message;
-      quadro.style.padding = "100px";
-    },
-    postList: () => {
-      const zelda = "http://localhost:3000/api/v1/publicacoes/";
-      let body = JSON.stringify({ value: 10 });
-      fetch(zelda, { method: "POST", body: body })
-        .then((res) => {
-          if (res.ok) {
-            res.json().then((json) => {
-              this.imprimeResultado(json);
-            });
-          } else {
-            this.errorHandler("Network response was not ok", null);
-          }
-        })
-        .catch((err) => {
-          this.errorHandler("Servidor está indisponível", err);
-        });
-    },
-  },
+  props: {
+    depoimento: Object
+  }
 };
 </script>
 <style scoped>

@@ -20,9 +20,6 @@ export default {
     conteudo,
     rodape,
   },
-  data() {
-
-  }
 };
 </script>
 
