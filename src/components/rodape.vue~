@@ -54,8 +54,8 @@ export default {};
 
 <style scoped>
 .linha {
-  padding-left: 13px;
-  padding-right: 13px;
+  padding-left: 14px;
+  padding-right: 14px;
 }
 .coluna-3 {
   height: 160px;
