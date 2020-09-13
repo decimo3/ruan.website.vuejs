@@ -4,23 +4,32 @@
       <h1 class="shadow">@RuanCamello - Minha vida em um arquivo na internet</h1>
     </div>
     <nav class="linha">
-      <li class="coluna-3">
-        <a>Inicio</a>
+      <li :class="{'coluna-3': true, 'selected': selecionado == 1}">
+        <a id="cabecaInicio" @click="mudarPagina(1)">Inicio</a>
       </li>
-      <li class="coluna-3">
-        <a>Sobre mim</a>
+      <li :class="{'coluna-3': true, 'selected': selecionado == 2}">
+        <a id="cabecaSobre" @click="mudarPagina(2)">Sobre mim</a>
       </li>
-      <li class="coluna-3">
-        <a>Profissional</a>
+      <li :class="{'coluna-3': true, 'selected': selecionado == 3}">
+        <a id="cabecaCurriculo" @click="mudarPagina(3)">Profissional</a>
       </li>
-      <li class="coluna-3">
-        <a>Aplicativos</a>
+      <li :class="{'coluna-3': true, 'selected': selecionado == 4}">
+        <a id="cabecaAplicativos" @click="mudarPagina(4)">Aplicativos</a>
       </li>
     </nav>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  methods:{
+    mudarPagina: function (value) {
+      this.$emit("mudarAba", value)
+    },
+  },
+      props: {
+        selecionado: Number
+      }
+};
 </script>
 <style scoped>
 #cabeca {

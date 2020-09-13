@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <cabecalho msg="Minha vida em uma página"/>
-    <cabeca />
+    <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada"/>
     <conteudo />
     <rodape />
   </div>
@@ -14,12 +14,22 @@ import conteudo from "./components/conteudo.vue";
 import rodape from "./components/rodape.vue";
 export default {
   name: "App",
+  data () {
+    return {
+      abaSelecionada: 1
+    }
+  },
   components: {
     cabecalho,
     cabeca,
     conteudo,
     rodape,
   },
+  methods: {
+    trocarAba: function ($event) {
+        this.abaSelecionada = $event
+    }
+  }
 };
 </script>
 

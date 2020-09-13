@@ -10,14 +10,9 @@
 <script>
 import publicacoes from "./publicacoes.vue";
 export default {
-  data() {
-    return {
-      aba: Number
-    }
-  },
   components: {
     publicacoes,
-  },
+  }
 };
 </script>
 <style scoped>

@@ -23,18 +23,15 @@ export default {
     listarPublicacao,
   },
     created: async function () {
-    console.log("Estou sendo criado !");
     const zelda = `http://localhost:3000/api/v1/publicacoes/`;
     await fetch(zelda, { method: "GET" }).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
-          console.log("Fetch bem sucedido!");
-          console.log(json);
           this.depoimentos = json
           this.isLoading = false
         });
       } else {
-        console.log("Response is not OK");
+        console.warn("Response is not OK");
       }
     });
   },
