@@ -2,16 +2,33 @@
   <div class="linha" id="mestre">
     <div id="esquerda" class="coluna-2" name="adsense-esquerda"></div>
     <div id="quadro" class="coluna-8">
-      <publicacoes/>
+      <publicacoes v-if="abaAtiva === 1"/>
+      <sobremim v-if="abaAtiva === 2"/>
+      <meucuriculo v-if="abaAtiva === 3"/>
+      <aplicativos v-if="abaAtiva === 4"/>
     </div>
     <div id="direita" class="coluna-2" name="adsense-direira"></div>
   </div>
 </template>
 <script>
 import publicacoes from "./publicacoes.vue";
+import sobremim from "./sobremim.vue"
+import meucuriculo from "./meucurriculo.vue";
+import aplicativos from "./aplicativos.vue"
 export default {
   components: {
     publicacoes,
+    sobremim,
+    meucuriculo,
+    aplicativos
+  },
+  data () {
+    return {
+      valor: Number
+    }
+  },
+  props: {
+    abaAtiva: Number
   }
 };
 </script>

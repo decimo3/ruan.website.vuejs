@@ -2,7 +2,7 @@
   <div id="app">
     <cabecalho msg="Minha vida em uma página"/>
     <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada"/>
-    <conteudo />
+    <conteudo :abaAtiva="abaSelecionada"/>
     <rodape />
   </div>
 </template>
