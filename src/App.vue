@@ -16,7 +16,7 @@ export default {
   name: "App",
   data () {
     return {
-      abaSelecionada: 1
+      abaSelecionada: 3
     }
   },
   components: {
