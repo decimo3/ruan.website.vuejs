@@ -4,6 +4,7 @@
       <p>Endereço: Rua Mário Santana, 970 Lote 3, Wona – Belford Roxo, Rio de Janeiro - Brasil</p>
       <p>E-mail: <a href="mailto:ruanfaustinocamello@hotmail.com">ruanfaustinocamello@hotmail.com</a> / <a href="mailto:ruanfaustinocamellodasilva@gmail.com">ruanfaustinocamellodasilva@gmail.com</a></p>
       <p>Telefone: +552197542-9768 / +552199213-3896</p>
+      <!-- Colocar a API do GitHub e do Stackoverflow aqui -->
       <p>CNH: "B", a exercer atividade remunerada.</p>
       <p>Brasileiro, 25 anos, casado, Belford Roxo / RJ</p>
       <br>
