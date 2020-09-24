@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <cabecalho msg="Minha vida em uma página"/>
+    <cabecalho @mudarAba="trocarAba($event)" msg="Minha vida em uma página"/>
     <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada"/>
     <conteudo :abaAtiva="abaSelecionada"/>
     <rodape />
@@ -16,7 +16,7 @@ export default {
   name: "App",
   data () {
     return {
-      abaSelecionada: 6
+      abaSelecionada: 1
     }
   },
   components: {
