@@ -1,49 +1,37 @@
 <template>
-  <div class="linha folder shadow">
-    <div class="mensagem">Ruan Camello - {{msg}}</div>
-    <form>
-      <label for="email">E-mail:</label>
-      <input name="email" id="email" type="email" required />
-      <label for="senha">Senha:</label>
-      <input name="senha" id="senha" type="password" required />
-      <input type="submit" value="Entrar"/>
-    </form>
+  <div class="linha">
+    <div class="coluna-12" v-if="usuario.logado === false">Anônimo - Para escrever um depoimento ou jogar, <a @click="mudarPagina(5)">faça login</a> ou <a @click="mudarPagina(6)">cadastre-se</a>.</div>
+    <div class="coluna-12" v-if="usuario.logado === true">Seja bem vindo {{usuario.nome}}. <a>minha conta</a> - <a>sair</a></div>
   </div>
 </template>
 <script>
 export default {
+  data () {
+    return {
+      usuario: {
+        nome: "Ruan Camello",
+        logado: false
+      }
+    }
+  },
   props: {
-    msg: String,
+    // usuario: Object
+  },
+  methods: {
+    mudarPagina: function (value) {
+      this.$emit("trocarAba", value);
+    },
   },
 };
 </script>
 <style scoped>
-@media only screen and (orientation: portrait) {
 * {
-  width: 100%;
-}
-}
-@media only screen and (orientation: landscape) {
-* {
-  padding-left: 5px;
-  padding-right: 5px;
-  display: flex;
-  flex-direction: row;
-}
-.mensagem {
-  width: 50%;
-}
-form {
-  width: 50%;
-}
-}
-* {
-  background-color: #bdbdbd;
   font-weight: bolder;
-  color: #ffffff;
+  color: rgb(0, 0, 0);
+  background-color: #bdbdbd;
+  text-align: right;
 }
-.folder {
-  border: 2px solid black;
-  padding: 1px;
+a {
+  text-decoration: underline;
 }
 </style>

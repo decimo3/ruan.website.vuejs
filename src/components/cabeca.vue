@@ -1,5 +1,6 @@
 <template>
   <div class="linha">
+    <cabecalho @trocarAba="mudarPagina($event)" msg="Minha vida em uma página"/>
     <div class="coluna-12" id="cabeca">
       <h1 class="shadow">@RuanCamello - Minha vida em um arquivo na internet</h1>
     </div>
@@ -20,7 +21,11 @@
   </div>
 </template>
 <script>
+import cabecalho from "./user.handler/user.head.vue"
 export default {
+  components: {
+    cabecalho,
+  },
   methods:{
     mudarPagina: function (value) {
       this.$emit("mudarAba", value)
