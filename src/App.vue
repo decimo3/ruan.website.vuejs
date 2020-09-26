@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <cabecalho @mudarAba="trocarAba($event)" msg="Minha vida em uma página"/>
     <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada"/>
     <conteudo :abaAtiva="abaSelecionada"/>
     <rodape />
@@ -8,7 +7,6 @@
 </template>
 
 <script>
-import cabecalho from "./components/user.handler/user.head.vue"
 import cabeca from "./components/cabeca.vue";
 import conteudo from "./components/conteudo.vue";
 import rodape from "./components/rodape.vue";
@@ -20,7 +18,6 @@ export default {
     }
   },
   components: {
-    cabecalho,
     cabeca,
     conteudo,
     rodape,
