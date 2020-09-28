@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada"/>
-    <conteudo :abaAtiva="abaSelecionada"/>
+    <conteudo @requisitarLogin="logarUsuario($event)" :abaAtiva="abaSelecionada"/>
     <rodape />
   </div>
 </template>
@@ -25,6 +25,10 @@ export default {
   methods: {
     trocarAba: function ($event) {
         this.abaSelecionada = $event
+    },
+    logarUsuario: function ($event) {
+      console.log("Recendo usuário...")
+      console.log($event)
     }
   }
 };

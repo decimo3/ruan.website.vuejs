@@ -6,7 +6,7 @@
       <sobremim v-if="abaAtiva === 2"/>
       <meucuriculo v-if="abaAtiva === 3"/>
       <aplicativos v-if="abaAtiva === 4"/>
-      <userlogin v-if="abaAtiva === 5"/>
+      <userlogin @enviarUsuario="transmitirUsuario($event)" v-if="abaAtiva === 5"/>
       <signupuser v-if="abaAtiva === 6"/>
     </div>
     <div id="direita" class="coluna-2" name="adsense-direira"></div>
@@ -30,8 +30,15 @@ export default {
   },
   props: {
     abaAtiva: Number
+  },
+  methods: {
+    transmitirUsuario: function ($event) {
+      console.log("Transmitindo login para 'App.vue'")
+      console.log($event.email, $event.senha)
+      this.$emit("requisitarLogin", {email: $event.email, senha: $event.senha})
+    }
   }
-};
+}
 </script>
 <style scoped>
 #mestre {

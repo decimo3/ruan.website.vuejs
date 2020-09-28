@@ -54,9 +54,10 @@ export default {
       $event.preventDefault()
       if (this.validateLogin(this.dados.email, this.dados.senha)) {
         console.log(this.dados.email, this.dados.senha)
-        this.$emit("logar", this.dados)
+        console.log("Transmitindo login para 'conteudo.vue'")
+        this.$emit("enviarUsuario", this.dados)
+        // this.dados.email = this.dados.senha = ""
         this.isInvalid = false
-        this.dados.email = this.dados.senha = ""
       } else {
         this.isInvalid = true
       }
