@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada"/>
-    <conteudo @requisitarLogin="logarUsuario($event)" :abaAtiva="abaSelecionada"/>
+    <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada" />
+    <conteudo
+      @requisitarLogin="logarUsuario($event)"
+      :abaAtiva="abaSelecionada"
+    />
     <rodape />
   </div>
 </template>
@@ -12,10 +15,11 @@ import conteudo from "./components/conteudo.vue";
 import rodape from "./components/rodape.vue";
 export default {
   name: "App",
-  data () {
+  data() {
     return {
-      abaSelecionada: 5
-    }
+      abaSelecionada: 5,
+      isLoading: true,
+    };
   },
   components: {
     cabeca,
@@ -24,13 +28,24 @@ export default {
   },
   methods: {
     trocarAba: function ($event) {
-        this.abaSelecionada = $event
+      this.abaSelecionada = $event;
     },
-    logarUsuario: function ($event) {
-      console.log("Recendo usuário...")
-      console.log($event)
-    }
-  }
+    logarUsuario: async function ($event) {
+      console.log("Recendo usuário...");
+      console.log($event);
+      const zelda = `http://localhost:3000/api/v1/login/`;
+      await fetch(zelda, { method: "POST", body: JSON.stringify($event) }).then((response) => {
+        if (response.ok) {
+          console.log(response)
+          // response.json().then((json) => {
+          //   this.isLoading = false;
+          // });
+        } else {
+          console.warn("Response is not OK");
+        }
+      });
+    },
+  },
 };
 </script>
 
@@ -51,29 +66,52 @@ export default {
 }
 
 @media only screen and (orientation: portrait) {
-  [class*="coluna-"] { width: 100%; }
+  [class*="coluna-"] {
+    width: 100%;
+  }
 }
 
 @media only screen and (orientation: landscape) {
-  .coluna-1 { width: 8.33%; }
-  .coluna-2 { width: 16.66%; }
-  .coluna-3 { width: 25%; }
-  .coluna-4 { width: 33.33%; }
-  .coluna-5 { width: 41.66%; }
-  .coluna-6 { width: 50%; }
-  .coluna-7 { width: 58.33%; }
-  .coluna-8 { width: 66.66%; }
-  .coluna-9 { width: 75%; }
-  .coluna-10 { width: 83.33%; }
-  .coluna-11 { width: 91.66%; }
-  .coluna-12 { width: 100%; }
+  .coluna-1 {
+    width: 8.33%;
+  }
+  .coluna-2 {
+    width: 16.66%;
+  }
+  .coluna-3 {
+    width: 25%;
+  }
+  .coluna-4 {
+    width: 33.33%;
+  }
+  .coluna-5 {
+    width: 41.66%;
+  }
+  .coluna-6 {
+    width: 50%;
+  }
+  .coluna-7 {
+    width: 58.33%;
+  }
+  .coluna-8 {
+    width: 66.66%;
+  }
+  .coluna-9 {
+    width: 75%;
+  }
+  .coluna-10 {
+    width: 83.33%;
+  }
+  .coluna-11 {
+    width: 91.66%;
+  }
+  .coluna-12 {
+    width: 100%;
+  }
 }
 .shadow {
-  text-shadow:
-      0px 2px #000000,
-      0px -2px #000000,
-      2px 0px #000000,
-      -2px 0px #000000;
-    color: #ffffff;
+  text-shadow: 0px 2px #000000, 0px -2px #000000, 2px 0px #000000,
+    -2px 0px #000000;
+  color: #ffffff;
 }
 </style>
