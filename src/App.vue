@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada" />
-    <conteudo
-      @requisitarLogin="logarUsuario($event)"
-      :abaAtiva="abaSelecionada"
-    />
+    <conteudo @requisitarLogin="logarUsuario($event)" :abaAtiva="abaSelecionada" />
     <rodape />
   </div>
 </template>
@@ -33,18 +30,12 @@ export default {
     logarUsuario: async function ($event) {
       console.log("Recendo usuário...");
       console.log($event);
+      const user = JSON.stringify($event);
       const zelda = `http://localhost:3000/api/v1/login/`;
-      await fetch(zelda, { method: "POST", body: JSON.stringify($event) }).then((response) => {
-        if (response.ok) {
-          console.log(response)
-          // response.json().then((json) => {
-          //   this.isLoading = false;
-          // });
-        } else {
-          console.warn("Response is not OK");
-        }
-      });
-    },
+      const requisicao = await fetch(zelda, { method: "POST", body: user })
+      var resposta  = await requisicao.json()
+      console.log(resposta)
+},
   },
 };
 </script>
