@@ -35,6 +35,7 @@ export default {
       const zelda = `http://localhost:3000/api/v1/login/`;
       const requisicao = await fetch(zelda, { method: "POST", body: user })
       var resposta  = await requisicao.json()
+      console.log(resposta)
     },
   },
 };
