@@ -37,10 +37,21 @@ export default {
       if (requisicao.status === 200) {
         var resposta  = await requisicao.json()
         console.log(resposta)
+        this.userData = this.parseJWT(resposta.token)
+        this.userData.logado = true
+        console.log(this.userData)
       } else {
         alert("e-mail ou senha inválidos!")
       }
     },
+    parseJWT: function (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+    }
   },
 };
 </script>
