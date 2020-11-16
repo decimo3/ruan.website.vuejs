@@ -29,7 +29,9 @@ export default {
     signupuser
   },
   props: {
-    abaAtiva: Number
+    abaAtiva: Number,
+    usuario: Object
+
   },
   methods: {
     transmitirUsuario: function ($event) {

@@ -32,7 +32,8 @@ export default {
     },
   },
       props: {
-        selecionado: Number
+        selecionado: Number,
+        usuario: Object
       }
 };
 </script>

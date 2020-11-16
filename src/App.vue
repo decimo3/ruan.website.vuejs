@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada" />
-    <conteudo @requisitarLogin="logarUsuario($event)" :abaAtiva="abaSelecionada" />
+    <cabeca @mudarAba="trocarAba($event)" :usuario="userData" :selecionado="abaSelecionada" />
+    <conteudo @requisitarLogin="logarUsuario($event)" :usuario="userData" :abaAtiva="abaSelecionada" />
     <rodape />
   </div>
 </template>
