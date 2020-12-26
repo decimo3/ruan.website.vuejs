@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <cabeca @mudarAba="trocarAba($event)" :usuario="userData" :selecionado="abaSelecionada" />
-    <conteudo @requisitarLogin="logarUsuario($event)" :usuario="userData" :abaAtiva="abaSelecionada" />
+    <cabeca @mudarAba="trocarAba($event)" :selecionado="abaSelecionada" />
+    <conteudo @requisitarLogin="logarUsuario($event)" :abaAtiva="abaSelecionada" />
     <rodape />
   </div>
 </template>
@@ -16,7 +16,6 @@ export default {
     return {
       abaSelecionada: 5,
       isLoading: true,
-      userData: Object
     };
   },
   components: {
@@ -28,30 +27,6 @@ export default {
     trocarAba: function ($event) {
       this.abaSelecionada = $event;
     },
-    logarUsuario: async function ($event) {
-      console.log("Recendo usuário...");
-      console.log($event);
-      const user = JSON.stringify($event);
-      const zelda = `http://localhost:3000/api/v1/login/`;
-      const requisicao = await fetch(zelda, { method: "POST", body: user })
-      if (requisicao.status === 200) {
-        var resposta  = await requisicao.json()
-        console.log(resposta)
-        this.userData = this.parseJWT(resposta.token)
-        this.userData.logado = true
-        console.log(this.userData)
-      } else {
-        alert("e-mail ou senha inválidos!")
-      }
-    },
-    parseJWT: function (token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload);
-    }
   },
 };
 </script>
