@@ -3,23 +3,102 @@
     <h2 class="shadow">Formulário de cadastro</h2>
     <form id="coluna-12 cadastro">
       <label for="nome">Nome Completo:</label>
-      <input type="text" id="nome" name="nome" required />
+      <input type="text" id="nome" name="nome" placeholder="Seu nome aqui" v-model="dados.nome" required />
       <label for="username">Login:</label>
-      <input type="username" id="username" name="username" required />
+      <input type="username" id="username" name="username" placeholder="Nome de usuário" v-model="dados.login" required />
       <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="email" name="email" placeholder="Seu e-mail aqui" v-model="dados.email" required />
       <label for="telefone">Telefone:</label>
-      <input type="telefone" id="telefone" name="telefone" required />
+      <input type="telefone" id="telefone" name="telefone" placeholder="Seu telefone celular" v-model="dados.fone" required />
       <label for="senha">Senha:</label>
-      <input type="password" name="senha" id="senha" required />
+      <input type="password" name="senha" id="senha" placeholder="Escolha uma senha" v-model="dados.senha" required />
       <label for="datanasc">Data de nascimento:</label>
-      <input type="date" id="datanasc" name="datanasc" required />
-      <input type="submit" class="button" />
+      <input type="date" id="datanasc" name="datanasc" v-model="dados.data" required />
+      <div class="isInvalid" v-if="isInvalid === 1">O formulário de inscrição é inválido</div>
+      <div class="isInvalid" v-if="isInvalid === 2">O usuário informado já foi cadastrado</div>
+      <div class="isInvalid" v-if="isInvalid === 3">Erro no servidor. contacte o administrador</div>
+      <input type="submit" class="button" @click="criarUsuario($event)"/>
     </form>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isInvalid: 0,
+      dados: {
+        nome: "",
+        login: "",
+        email: "",
+        fone: "",
+        senha: "",
+        data: 0,
+      },
+    };
+  },
+  methods: {
+    validateCreate: function (userData) {
+      return this.validName(userData.nome) && this.validLogin(userData.login) && this.validEmail(userData.email) && this.validParafrase(userData.senha) && this.validCreateDate(userData.data);
+    },
+    validName: function (nome) {
+      var regex = /^[a-z ]{8,64}$/
+      return regex.test(nome);
+    },
+    validUsername: function (login) {
+      var regex = /^[a-z_0-9]{8,16}$/
+      return regex.test(login);
+    },
+    validParafrase: function (senha) {
+      /* eslint-disable */
+      var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+      /*eslint-enable */
+      return regex.test(senha);
+    },
+    validCreateDate: function (datas) {
+      let data = Date.parse(datas);
+      // TODO: Criar validação de data> não pode ser maior que a data atual e menor que 1970;
+    },
+    validEmail: function (email) {
+      var regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return regex.test(email);
+    },
+    criarUsuario: async function ($event) {
+      $event.preventDefault();
+      if (this.validateCreate(this.dados)) {
+        console.log(this.dados);
+        const user = JSON.stringify(this.dados);
+        const zelda = `http://localhost:3000/api/v1/usuario/`;
+        const requisicao = await fetch(zelda, { method: "POST", body: user });
+        if (requisicao.status === 200) {
+          var resposta = await requisicao.json();
+          console.log(resposta);
+          this.$usuario = this.parseJWT(resposta.token);
+          this.$usuario.isLogado = true;
+          console.log(this.$usuario);
+          this.isInvalid = 0;
+        } else if (requisicao.status === 401) {
+          console.log("usuário e senha rejeitados!")
+          this.isInvalid = 1;
+        } else if (requisicao.status === 500){
+        this.isInvalid = 3;
+        }
+      } 
+    },
+    parseJWT: function (token) {
+      var base64Url = token.split(".")[1];
+      var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      var jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join("")
+      );
+      return JSON.parse(jsonPayload);
+    },
+  }, // Close methods
+};
 </script>
 <style scoped>
 .cadastro {
@@ -65,4 +144,9 @@ export default {};
   text-align: center;
   width: 100px;
   }
+  .isInvalid {
+  color: #ff0000;
+  padding: 5px;
+  padding-top: 10px;
+}
 </style>
