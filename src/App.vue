@@ -14,7 +14,7 @@ export default {
   name: "App",
   data() {
     return {
-      abaSelecionada: 5,
+      abaSelecionada: 6,
       isLoading: true,
     };
   },

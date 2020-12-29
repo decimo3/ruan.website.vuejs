@@ -30,7 +30,6 @@ export default {
   },
   props: {
     abaAtiva: Number,
-    usuario: Object
 
   },
   methods: {
