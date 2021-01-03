@@ -14,9 +14,7 @@
       <input type="password" name="senha" id="senha" placeholder="Escolha uma senha" v-model="dados.senha" required />
       <label for="datanasc">Data de nascimento:</label>
       <input type="date" id="datanasc" name="datanasc" v-model="dados.data" required />
-      <div class="isInvalid" v-if="isInvalid === 1">O formulário de inscrição é inválido</div>
-      <div class="isInvalid" v-if="isInvalid === 2">O usuário informado já foi cadastrado</div>
-      <div class="isInvalid" v-if="isInvalid === 3">Erro no servidor. contacte o administrador</div>
+      <div class="isInvalid" v-if="isInvalid.status"><strong>{{this.isInvalid.msg}}</strong></div>
       <input type="submit" class="button" @click="criarUsuario($event)"/>
     </form>
   </div>
@@ -25,37 +23,66 @@
 export default {
   data() {
     return {
-      isInvalid: 0,
+      isInvalid: {
+        status: false,
+        msg: ""
+      },
       dados: {
         nome: "",
         login: "",
         email: "",
         fone: "",
         senha: "",
-        data: 0,
+        data: "",
       },
     };
   },
   methods: {
     validateCreate: function (userData) {
-      return this.validName(userData.nome) && this.validLogin(userData.login) && this.validEmail(userData.email) && this.validParafrase(userData.senha) && this.validCreateDate(userData.data);
+      if (this.validName(userData.nome)) {
+        if (this.validLogin(userData.login)) {
+          if (this.validEmail(userData.email)) {
+            if (this.validSenha(userData.senha)) {
+              if (this.validCreateDate(userData.data)) {
+                return true
+              } else {
+                this.isInvalid.msg = "A data informada é inválida!"
+                return false
+              }
+            } else {
+              this.isInvalid.msg = "A senha informada não é inválida!"
+              return false
+            }
+          } else {
+            this.isInvalid.msg = "Email informado é inválido!"
+            return false
+          }
+        } else {
+          this.isInvalid.msg = "Nome de usuário informado é inválido"
+          return false
+        }
+      } else {
+        this.isInvalid.msg = "O nome próprio informado é inválido"
+        return false
+      }
     },
     validName: function (nome) {
-      var regex = /^[a-z ]{8,64}$/
+      var regex = /^[a-zA-Z ]{16,128}$/
       return regex.test(nome);
     },
-    validUsername: function (login) {
-      var regex = /^[a-z_0-9]{8,16}$/
+    validLogin: function (login) {
+      var regex = /^[a-z_0-9]{6,16}$/
       return regex.test(login);
     },
-    validParafrase: function (senha) {
+    validSenha: function (senha) {
       /* eslint-disable */
-      var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+      var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,64})/;
       /*eslint-enable */
       return regex.test(senha);
     },
     validCreateDate: function (datas) {
       let data = Date.parse(datas);
+      return (data < Date.now()) && (data > Date.parse("01-01-1970 00:00"))
       // TODO: Criar validação de data> não pode ser maior que a data atual e menor que 1970;
     },
     validEmail: function (email) {
