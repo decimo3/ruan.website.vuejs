@@ -137,15 +137,9 @@ export default {
 };
 </script>
 <style scoped>
-.cadastro {
-  border: 2px solid #000000;
-  border-radius: 15px;
-  background-color: #dcdcdc;
-}
 @media only screen and (orientation: portrait) {
   label {
     width: 100%;
-    text-align: right;
   }
   input {
     width: 100%;
@@ -163,7 +157,7 @@ export default {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
-    grid-template-areas: ". ." ". ." ". ." ". ." ". ." ". ." "s s";
+    grid-template-areas: ". ." ". ." ". ." ". ." ". ." ". ." "e e" "s s";
   }
   label {
     width: 150px;
@@ -173,16 +167,23 @@ export default {
     width: 150px;
     text-align: left;
   }
-}
-.button {
+  .button {
   grid-area: s;
   margin: auto;
   text-align: center;
   width: 100px;
   }
   .isInvalid {
+  grid-area: e;
+  text-align: center;
   color: #ff0000;
   padding: 5px;
   padding-top: 10px;
+  }
+} /* END LANDSCAPE */ 
+.cadastro {
+  border: 2px solid #000000;
+  border-radius: 15px;
+  background-color: #ffffff;
 }
 </style>
