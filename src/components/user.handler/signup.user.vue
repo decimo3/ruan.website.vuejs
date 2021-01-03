@@ -102,13 +102,22 @@ export default {
           this.$usuario = this.parseJWT(resposta.token);
           this.$usuario.isLogado = true;
           console.log(this.$usuario);
-          this.isInvalid = 0;
-        } else if (requisicao.status === 401) {
-          console.log("usuário e senha rejeitados!")
-          this.isInvalid = 1;
+          this.isInvalid.status = false;
+          alert("Usuário criado com sucesso!\nRedirecionando para login de usuário...")
+        } else if (requisicao.status === 400) {
+          this.isInvalid.msg = "O formulário de cadastro de usuário não está preenchido corretamente!";
+          this.isInvalid.status = true;
         } else if (requisicao.status === 500){
-        this.isInvalid = 3;
+          this.isInvalid.msg = "Erro no servidor. contacte o administrador";
+          this.isInvalid.status = true;
+        } else if (requisicao.status === 401) {
+          this.isInvalid.msg = "Já existe cadastro para esse usuário!";
+          this.isInvalid.status = true;
+        } else {
+          alert(`CODE: ${requisicao.status}: Mas que merda é essa que está acontecendo ?`)
         }
+      } else {
+        this.isInvalid.status = true;
       } 
     },
     parseJWT: function (token) {
