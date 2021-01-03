@@ -1,7 +1,7 @@
 <template>
-  <div id="quadro" class="linha cadastro">
+  <div id="quadro" class="cadastro">
     <h2 class="shadow">Formulário de cadastro</h2>
-    <form id="coluna-12 cadastro">
+    <form class="coluna-12">
       <label for="nome">Nome Completo:</label>
       <input type="text" id="nome" name="nome" placeholder="Seu nome aqui" v-model="dados.nome" required />
       <label for="username">Login:</label>
