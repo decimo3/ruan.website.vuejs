@@ -72,18 +72,16 @@ export default {
       },
       dados: {
         nome: "",
-        login: "",
         email: "",
         fone: "",
         senha: "",
-        data: "",
+        data: new Date(),
       },
     };
   },
   methods: {
     validateCreate: function (userData) {
       if (this.validName(userData.nome)) {
-        if (this.validLogin(userData.login)) {
           if (this.validEmail(userData.email)) {
             if (this.validSenha(userData.senha)) {
               if (this.validCreateDate(userData.data)) {
@@ -101,21 +99,13 @@ export default {
             return false
           }
         } else {
-          this.isInvalid.msg = "Nome de usuário informado é inválido"
+          this.isInvalid.msg = "O nome próprio informado é inválido"
           return false
-        }
-      } else {
-        this.isInvalid.msg = "O nome próprio informado é inválido"
-        return false
       }
     },
     validName: function (nome) {
       var regex = /^[a-zA-Z ]{16,128}$/
       return regex.test(nome);
-    },
-    validLogin: function (login) {
-      var regex = /^[a-z_0-9]{6,16}$/
-      return regex.test(login);
     },
     validSenha: function (senha) {
       /* eslint-disable */
@@ -134,12 +124,13 @@ export default {
     },
     criarUsuario: async function ($event) {
       $event.preventDefault();
+      console.log(this.dados);
       if (this.validateCreate(this.dados)) {
         console.log(this.dados);
         const user = JSON.stringify(this.dados);
         const zelda = `http://localhost:3000/api/v1/usuario/`;
         const requisicao = await fetch(zelda, { method: "POST", body: user });
-        if (requisicao.status === 200) {
+        if (requisicao.status === 201) {
           var resposta = await requisicao.json();
           console.log(resposta);
           this.$usuario = this.parseJWT(resposta.token);
