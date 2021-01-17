@@ -1,23 +1,66 @@
 <template>
-  <div id="quadro" class="cadastro">
-    <h2 class="shadow">Formulário de cadastro</h2>
-    <form class="coluna-12">
-      <label for="nome">Nome Completo:</label>
-      <input type="text" id="nome" name="nome" placeholder="Seu nome aqui" v-model="dados.nome" required />
-      <label for="username">Login:</label>
-      <input type="username" id="username" name="username" placeholder="Nome de usuário" v-model="dados.login" required />
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" placeholder="Seu e-mail aqui" v-model="dados.email" required />
-      <label for="telefone">Telefone:</label>
-      <input type="telefone" id="telefone" name="telefone" placeholder="Seu telefone celular" v-model="dados.fone" required />
-      <label for="senha">Senha:</label>
-      <input type="password" name="senha" id="senha" placeholder="Escolha uma senha" v-model="dados.senha" required />
-      <label for="datanasc">Data de nascimento:</label>
-      <input type="date" id="datanasc" name="datanasc" v-model="dados.data" required />
+    <form class="coluna-12 cadastro">
+      <h2 class="shadow">Formulário de cadastro</h2>
+      <div class="field">
+  <p class="control has-icons-left has-icons-right">
+    <input class="input" type="text" v-model=dados.nome placeholder="Nome completo" required/>
+    <span class="icon is-small is-left">
+      <i class="fas fa-user"></i>
+    </span>
+
+    <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+  </p>
+</div>
+      <div class="field">
+  <p class="control has-icons-left has-icons-right">
+    <input class="input" type="email" v-model=dados.email placeholder="Email" required/>
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+  </p>
+</div>
+      <div class="field">
+  <p class="control has-icons-left has-icons-right">
+    <input class="input" type="password" v-model=dados.senha placeholder="Password" reqired/>
+    <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+  </p>
+</div>
+
+<div class="field">
+  <p class="control has-icons-left has-icons-right">
+    <input class="input" type="number" v-model=dados.fone placeholder="Telefone" required/>
+    <span class="icon is-small is-left">
+      <i class="fas fa-phone"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+  </p>
+</div>
+<div class="field">
+  <p class="control has-icons-left has-icons-right">
+    <input class="input" type="date" v-model=dados.data placeholder="Data de nascimento" required/>
+    <span class="icon is-small is-left">
+      <i class="fas fa-calendar-alt"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+  </p>
+</div>
       <div class="isInvalid" v-if="isInvalid.status"><strong>{{this.isInvalid.msg}}</strong></div>
       <input type="submit" class="button" @click="criarUsuario($event)"/>
     </form>
-  </div>
 </template>
 <script>
 export default {
@@ -137,53 +180,5 @@ export default {
 };
 </script>
 <style scoped>
-@media only screen and (orientation: portrait) {
-  label {
-    width: 100%;
-  }
-  input {
-    width: 100%;
-  }
-}
 
-@media only screen and (orientation: landscape) {
-  .cadastro {
-  margin-left: 25%;
-  margin-right: 25%;
-  }
-  form {
-    padding: 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas: ". ." ". ." ". ." ". ." ". ." ". ." "e e" "s s";
-  }
-  label {
-    width: 150px;
-    text-align: right;
-  }
-  input {
-    width: 150px;
-    text-align: left;
-  }
-  .button {
-  grid-area: s;
-  margin: auto;
-  text-align: center;
-  width: 100px;
-  }
-  .isInvalid {
-  grid-area: e;
-  text-align: center;
-  color: #ff0000;
-  padding: 5px;
-  padding-top: 10px;
-  }
-} /* END LANDSCAPE */ 
-.cadastro {
-  border: 2px solid #000000;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
 </style>
