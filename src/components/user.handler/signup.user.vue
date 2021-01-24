@@ -124,18 +124,14 @@ export default {
     },
     criarUsuario: async function ($event) {
       $event.preventDefault();
-      console.log(this.dados);
       if (this.validateCreate(this.dados)) {
-        console.log(this.dados);
         const user = JSON.stringify(this.dados);
         const zelda = `http://localhost:3000/api/v1/usuario/`;
         const requisicao = await fetch(zelda, { method: "POST", body: user });
         if (requisicao.status === 201) {
           var resposta = await requisicao.json();
-          console.log(resposta);
           this.$usuario = this.parseJWT(resposta.token);
           this.$usuario.isLogado = true;
-          console.log(this.$usuario);
           this.isInvalid.status = false;
           alert("Usuário criado com sucesso!\nRedirecionando para login de usuário...")
         } else if (requisicao.status === 400) {
