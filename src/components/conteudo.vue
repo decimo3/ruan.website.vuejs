@@ -30,15 +30,7 @@ export default {
   },
   props: {
     abaAtiva: Number,
-
   },
-  methods: {
-    transmitirUsuario: function ($event) {
-      console.log("Transmitindo login para 'App.vue'")
-      console.log($event.email, $event.senha)
-      this.$emit("requisitarLogin", {email: $event.email, senha: $event.senha})
-    }
-  }
 }
 </script>
 <style scoped>
