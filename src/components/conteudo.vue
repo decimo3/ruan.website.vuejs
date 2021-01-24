@@ -6,8 +6,8 @@
       <sobremim v-if="abaAtiva === 2"/>
       <meucuriculo v-if="abaAtiva === 3"/>
       <aplicativos v-if="abaAtiva === 4"/>
-      <userlogin @enviarUsuario="transmitirUsuario($event)" v-if="abaAtiva === 5"/>
-      <signupuser v-if="abaAtiva === 6"/>
+      <userlogin v-if="(abaAtiva === 5) && (this.$usuario.isLogado === false)"/>
+      <signupuser v-if="(abaAtiva === 6) && (this.$usuario.isLogado === false)"/>
     </div>
     <div id="direita" class="coluna-2" name="adsense-direira"></div>
   </div>
