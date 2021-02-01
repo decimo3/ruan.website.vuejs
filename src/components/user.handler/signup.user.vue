@@ -1,66 +1,113 @@
 <template>
-    <form class="coluna-12 cadastro">
-      <h2 class="shadow">Formulário de cadastro</h2>
-      <div class="field">
-  <p class="control has-icons-left has-icons-right">
-    <input class="input" type="text" v-model=dados.nome placeholder="Nome completo" required/>
-    <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
-    </span>
-
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-  </p>
-</div>
-      <div class="field">
-  <p class="control has-icons-left has-icons-right">
-    <input class="input" type="email" v-model=dados.email placeholder="Email" required/>
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-  </p>
-</div>
-      <div class="field">
-  <p class="control has-icons-left has-icons-right">
-    <input class="input" type="password" v-model=dados.senha placeholder="Password" reqired/>
-    <span class="icon is-small is-left">
-      <i class="fas fa-lock"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-  </p>
-</div>
-
-<div class="field">
-  <p class="control has-icons-left has-icons-right">
-    <input class="input" type="number" v-model=dados.fone placeholder="Telefone" required/>
-    <span class="icon is-small is-left">
-      <i class="fas fa-phone"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-  </p>
-</div>
-<div class="field">
-  <p class="control has-icons-left has-icons-right">
-    <input class="input" type="date" v-model=dados.data placeholder="Data de nascimento" required/>
-    <span class="icon is-small is-left">
-      <i class="fas fa-calendar-alt"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-  </p>
-</div>
-      <div class="isInvalid" v-if="isInvalid.status"><strong>{{this.isInvalid.msg}}</strong></div>
-      <input type="submit" class="button" @click="criarUsuario($event)"/>
-    </form>
+  <form class="coluna-12 cadastro">
+    <h2 class="shadow">Formulário de cadastro</h2>
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          type="text"
+          v-model="dados.nome"
+          placeholder="Nome completo"
+          required
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          type="email"
+          v-model="dados.email"
+          placeholder="Email"
+          required
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          type="password"
+          v-model="dados.senha"
+          placeholder="Digite uma senha"
+          reqired
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          type="password"
+          v-model="confirm"
+          placeholder="Confirmar a senha"
+          reqired
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          type="number"
+          v-model="dados.fone"
+          placeholder="Telefone"
+          required
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-phone"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          type="text"
+          v-model="dados.data"
+          placeholder="Data de nascimento"
+          required
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-calendar-alt"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    <div class="isInvalid" v-if="isInvalid.status">
+      <strong>{{ this.isInvalid.msg }}</strong>
+    </div>
+    <input type="submit" class="button" @click="criarUsuario($event)" />
+  </form>
 </template>
 <script>
 export default {
