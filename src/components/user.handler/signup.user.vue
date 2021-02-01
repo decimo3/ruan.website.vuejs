@@ -115,54 +115,81 @@ export default {
     return {
       isInvalid: {
         status: false,
-        msg: ""
+        msg: "",
       },
+      confirm: "",
       dados: {
         nome: "",
         email: "",
         fone: "",
         senha: "",
-        data: new Date(),
+        data: "",
       },
     };
+  },
+  computed: {
+    dateFormat: function () {
+      
+      return 0
+      
+    }
   },
   methods: {
     validateCreate: function (userData) {
       if (this.validName(userData.nome)) {
-          if (this.validEmail(userData.email)) {
-            if (this.validSenha(userData.senha)) {
-              if (this.validCreateDate(userData.data)) {
-                return true
-              } else {
-                this.isInvalid.msg = "A data informada é inválida!"
-                return false
-              }
+        if (this.validEmail(userData.email)) {
+          if (this.validCreateDate(userData.data)) {
+            if (this.validSenha(userData.senha) === "sim") {
+              return true;
+            } else if (this.validSenha(userData.senha) === "not") {
+              this.isInvalid.msg = "A senha informada não atende aos requisitos mínimos de segurança!";
+              return false;
+            } else if (this.validSenha(userData.senha) === "dif") {
+              this.isInvalid.msg = "As senhas precisam ser iguais!";
+              return false;
+            } else if (this.validSenha(userData.senha) === "") {
+              this.isInvalid.msg = "É necessario informar uma senha e confirmar!";
+              return false;
             } else {
-              this.isInvalid.msg = "A senha informada não é inválida!"
-              return false
+              this.isInvalid.msg = "Algo de errado não está certo!";
+              return false;
             }
           } else {
-            this.isInvalid.msg = "Email informado é inválido!"
-            return false
+            this.isInvalid.msg = "A data informada é inválida!";
+            return false;
           }
         } else {
-          this.isInvalid.msg = "O nome próprio informado é inválido"
-          return false
+          this.isInvalid.msg = "Email informado é inválido!";
+          return false;
+        }
+      } else {
+        this.isInvalid.msg = "O nome próprio informado é inválido";
+        return false;
       }
     },
     validName: function (nome) {
-      var regex = /^[a-zA-Z ]{16,128}$/
+      var regex = /^[a-zA-Z ]{16,128}$/;
       return regex.test(nome);
     },
     validSenha: function (senha) {
-      /* eslint-disable */
-      var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,64})/;
-      /*eslint-enable */
-      return regex.test(senha);
+      if (senha === "" || this.confirm === "") {
+        return "";
+      }
+      if (senha === this.confirm) {
+        /* eslint-disable */
+        var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,64})/;
+        /*eslint-enable */
+        if (regex.test(senha)) {
+          return "sim";
+        } else {
+          return "not";
+        }
+      }
+      return "dif";
     },
     validCreateDate: function (datas) {
       let data = Date.parse(datas);
-      return (data < Date.now()) && (data > Date.parse("01-01-1970 00:00"))
+      return data < Date.now() && data > Date.parse("01-01-1970 00:00");
       // TODO: Criar validação de data> não pode ser maior que a data atual e menor que 1970;
     },
     validEmail: function (email) {
